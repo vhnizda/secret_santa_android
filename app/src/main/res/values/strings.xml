@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Secret Santa</string>
+    <string name="welcome_message">Please choose how many people will be
+                                   participating in the secret santa.</string>
+    <string name="button1">0 People</string>
+    <string name="button2">0 People</string>
+    <string name="button3">0 People</string>
+    <string name="button4">0 People</string>
+    <string name="button5">0 People</string>
+    <string name="button6">0 People</string>
+    <string name="button7">0 People</string>
+    <string name="button8">0 People</string>
+</resources>
