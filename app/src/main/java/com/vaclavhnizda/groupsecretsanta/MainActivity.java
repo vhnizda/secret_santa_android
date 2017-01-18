@@ -16,12 +16,17 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         setContentView(R.layout.activity_main);
         Button myButton;
 
-        //itterate over all buttons
+        //iterate over all buttons - we have 8 of them pre-created
         for(int x = 0; x < 8; x++){
+            //Used to get resource id based on "button" + int ID
             int ResID = getResources().getIdentifier("button" + (x + 1),"id",getPackageName());
+            //Retrieve button from ID found
             myButton = (Button)findViewById(ResID);
+            //Set the text of the button
             myButton.setText((minCount + x) + " people");
+            //Set a tag for later retrieval
             myButton.setTag(minCount + x);
+            //Create a listener link to the button click
             myButton.setOnClickListener(this);
         }
     }
@@ -29,9 +34,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
 
     @Override
     public void onClick(View view) {
-
+        //Only buttons are linked currently so it's safe to assume this is a button
         Button buttonClicked = (Button)view;
+        //Get my custom int tag representing the number of people they want to include in secret santa
         int personCount = (int)buttonClicked.getTag();
+        //TODO This is where the next view is launched for the app.
+        //TODO currently it changes the text of the button for testing purposes.
         buttonClicked.setText("Button " + (personCount - minCount + 1) + " OK.");
     }
 }
