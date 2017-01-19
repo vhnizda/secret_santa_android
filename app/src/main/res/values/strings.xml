@@ -10,4 +10,6 @@
     <string name="button6">0 People</string>
     <string name="button7">0 People</string>
     <string name="button8">0 People</string>
+
+    <string name="user_data_instructions">Please fill out each persons name.</string>
 </resources>

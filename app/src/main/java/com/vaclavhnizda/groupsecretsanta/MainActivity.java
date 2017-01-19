@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener{
 
+    public static String PEOPLE_COUNT = "com.vaclavhnizda.groupsecretsanta.MESSAGE";
     private int minCount = 3;
 
     @Override
@@ -41,5 +43,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         //TODO This is where the next view is launched for the app.
         //TODO currently it changes the text of the button for testing purposes.
         buttonClicked.setText("Button " + (personCount - minCount + 1) + " OK.");
+        Intent intent = new Intent(this, EnterUserInfoActivity.class);
+        intent.putExtra(PEOPLE_COUNT,personCount);
+        startActivity(intent);
     }
 }
