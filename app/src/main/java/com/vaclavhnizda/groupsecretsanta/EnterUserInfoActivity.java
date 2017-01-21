@@ -2,6 +2,8 @@ package com.vaclavhnizda.groupsecretsanta;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.support.annotation.ColorInt;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +27,8 @@ public class EnterUserInfoActivity extends AppCompatActivity {
 
         //TODO create a list of text fields for entering all the user data.
         Context context = getApplicationContext();
+        int colorBlack = Color.parseColor("#000000");
+
         LinearLayout mainLayout = (LinearLayout)findViewById(R.id.user_list_layout);
 
         LinearLayout rowLayout = new LinearLayout(context);
@@ -32,10 +36,12 @@ public class EnterUserInfoActivity extends AppCompatActivity {
 
         TextView numbering = new TextView(context);
         numbering.setText("1.");
+        numbering.setTextColor(colorBlack);
         rowLayout.addView(numbering);
 
         EditText userInfo = new EditText(context);
         userInfo.setHint("<enter name here>");
+        userInfo.setTextColor(colorBlack);
         rowLayout.addView(userInfo);
         //TODO figure out how to color text, currently all is white??
 
