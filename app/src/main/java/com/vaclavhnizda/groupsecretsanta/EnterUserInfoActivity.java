@@ -26,23 +26,33 @@ public class EnterUserInfoActivity extends AppCompatActivity {
         Context context = getApplicationContext();
         LinearLayout mainLayout = (LinearLayout)findViewById(R.id.user_list_layout);
 
+        for(int rowNumber = 1; rowNumber <= numberOfPeople; rowNumber++) {
+            LinearLayout rowLayout = new LinearLayout(context);
+            rowLayout.setOrientation(LinearLayout.HORIZONTAL);
 
-        int rowNumber = 1;
-        LinearLayout rowLayout = new LinearLayout(context);
-        rowLayout.setOrientation(LinearLayout.HORIZONTAL);
-        TextView numbering = new TextView(context);
-        numbering.setText(rowNumber + ". ");
-        numbering.setTextColor(Color.BLACK);
-        rowLayout.addView(numbering);
+            //Numbering for each row
+            TextView numbering = new TextView(context);
+            numbering.setText(rowNumber + ". ");
+            numbering.setTextColor(Color.BLACK);
 
-        EditText userInfo = new EditText(context);
-        userInfo.setHint("<enter name here>");
-        userInfo.setTextColor(Color.BLACK);
-        userInfo.setHintTextColor(Color.GRAY);
+            rowLayout.addView(numbering);   //add value to the row
 
-        rowLayout.addView(userInfo);
+            //Column for persons name
+            EditText personsName = new EditText(context);
+            personsName.setHint("<enter name here>");
+            personsName.setTextColor(Color.BLACK);
+            personsName.setHintTextColor(Color.GRAY);
 
-        mainLayout.addView(rowLayout);
+            rowLayout.addView(personsName); //add value to the row
+
+            //TODO Column for email address
+
+
+            mainLayout.addView(rowLayout);  //add complete row to the list
+        }
+
+        //TODO make scrollable when too much information is generated..
+        
         //TODO add a button to move to next fields (and save data to database)
     }
 }
