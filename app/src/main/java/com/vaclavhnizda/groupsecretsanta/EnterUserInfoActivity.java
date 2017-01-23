@@ -3,6 +3,9 @@ package com.vaclavhnizda.groupsecretsanta;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -19,8 +22,14 @@ public class EnterUserInfoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int numberOfPeople = intent.getIntExtra(MainActivity.PEOPLE_COUNT,1);
 
+        //Strings to use
+        String numPeopleInstructionTxt1 = getResources().getString(R.string.user_data_instructions_part1);
+        String numPeopleInstructionTxt2 = getResources().getString(R.string.user_data_instructions_part2);
+        String emailHintText = " <" + getResources().getString(R.string.user_email_hint_text) + "> ";
+        String nameHintText =  " <" + getResources().getString(R.string.user_name_hint_text)  + "> ";
+
         TextView textView = (TextView)findViewById(R.id.user_instructions);
-        textView.setText("Please fill out the information for all " + numberOfPeople + " people.");
+        textView.setText(numPeopleInstructionTxt1 + " " + numberOfPeople + " " + numPeopleInstructionTxt2);
 
         //Create a list of text fields for entering all the user data.
         Context context = getApplicationContext();
@@ -32,27 +41,46 @@ public class EnterUserInfoActivity extends AppCompatActivity {
 
             //Numbering for each row
             TextView numbering = new TextView(context);
-            numbering.setText(rowNumber + ". ");
+            //temporary fix for numbering under double digit, might need to change layout to grid.. for better organization..
+            String rowNumFormatted = (rowNumber < 10 ? "  " : "") + rowNumber;
+            numbering.setText(rowNumFormatted + ". ");
             numbering.setTextColor(Color.BLACK);
-
-            rowLayout.addView(numbering);   //add value to the row
 
             //Column for persons name
             EditText personsName = new EditText(context);
-            personsName.setHint("<enter name here>");
+            personsName.setBackground(getBorderStyle());
+            personsName.setHint(nameHintText);
             personsName.setTextColor(Color.BLACK);
             personsName.setHintTextColor(Color.GRAY);
 
-            rowLayout.addView(personsName); //add value to the row
+            //Column for email address
+            EditText emailAddress = new EditText(context);
+            emailAddress.setBackground(getBorderStyle());
+            emailAddress.setHint(emailHintText);
+            emailAddress.setTextColor(Color.BLACK);
+            emailAddress.setHintTextColor(Color.GRAY);
 
-            //TODO Column for email address
+            //Add all values to the row
+            rowLayout.addView(numbering);   //add value to the row
+            rowLayout.addView(personsName); //add value to the row
+            rowLayout.addView(emailAddress);
 
 
             mainLayout.addView(rowLayout);  //add complete row to the list
         }
 
         //TODO make scrollable when too much information is generated..
-        
+
         //TODO add a button to move to next fields (and save data to database)
+    }
+
+    private ShapeDrawable getBorderStyle(){
+        // Create a border programmatically
+        ShapeDrawable customShape = new ShapeDrawable(new RectShape());
+        customShape.getPaint().setColor(Color.BLACK);
+        customShape.getPaint().setStyle(Paint.Style.STROKE);
+        customShape.getPaint().setStrokeWidth(3);
+        customShape.setPadding(10,10,10,10);
+        return customShape;
     }
 }

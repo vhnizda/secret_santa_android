@@ -12,4 +12,8 @@
     <string name="button8">0 People</string>
 
     <string name="user_data_instructions">Please fill out each persons name.</string>
+    <string name="user_data_instructions_part1">Please fill out the information for all</string>
+    <string name="user_data_instructions_part2">people.</string>
+    <string name="user_name_hint_text">person\'s name</string>
+    <string name="user_email_hint_text">email address</string>
 </resources>

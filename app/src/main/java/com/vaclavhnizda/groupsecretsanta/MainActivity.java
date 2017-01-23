@@ -40,9 +40,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         Button buttonClicked = (Button)view;
         //Get my custom int tag representing the number of people they want to include in secret santa
         int personCount = (int)buttonClicked.getTag();
-        //TODO This is where the next view is launched for the app.
-        //TODO currently it changes the text of the button for testing purposes.
-        buttonClicked.setText("Button " + (personCount - minCount + 1) + " OK.");
+
+        //This is where the next activity is launched for the app.
         Intent intent = new Intent(this, EnterUserInfoActivity.class);
         intent.putExtra(PEOPLE_COUNT,personCount);
         startActivity(intent);
