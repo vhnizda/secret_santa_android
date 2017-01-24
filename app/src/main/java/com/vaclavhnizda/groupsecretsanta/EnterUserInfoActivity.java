@@ -16,6 +16,9 @@ import android.widget.TextView;
 public class EnterUserInfoActivity extends AppCompatActivity {
 
     private int numberOfPeople = 0;
+    private final String COUNTKEY = "total_users";
+    private final String SUBKEYNAME = "userName";
+    private final String SUBKEYEMAIL = "userEmail";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,11 +73,11 @@ public class EnterUserInfoActivity extends AppCompatActivity {
             rowLayout.addView(personsName); //add value to the row
             rowLayout.addView(emailAddress);
 
-
             mainLayout.addView(rowLayout);  //add complete row to the list
         }
 
         //TODO load saved data from previous session!
+        loadData();
 
         //TODO add a button to move to next fields (and save data to database)
     }
@@ -88,16 +91,44 @@ public class EnterUserInfoActivity extends AppCompatActivity {
         SharedPreferences sharedPref = getApplication().getSharedPreferences(key, Context.MODE_PRIVATE);
         //edit data
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt("total_users",numberOfPeople);
+        editor.putInt(COUNTKEY,numberOfPeople);
 
         for(int count = 1; count <= numberOfPeople; count++){
             EditText name = (EditText)findViewById(500+count);
             EditText email = (EditText)findViewById(1500+count);
-            editor.putString("userName" + count, name.getText().toString());
-            editor.putString("userEmail" + count, email.getText().toString());
+            editor.putString(SUBKEYNAME + count, name.getText().toString());
+            editor.putString(SUBKEYEMAIL + count, email.getText().toString());
         }
 
         editor.commit();
+    }
+
+    private void loadData(){
+        //setup local resource
+        String key = getResources().getString(R.string.preference_file_key);
+        SharedPreferences sharedPref = getApplication().getSharedPreferences(key, Context.MODE_PRIVATE);
+
+        int savedCount = sharedPref.getInt(COUNTKEY,numberOfPeople);
+        if (savedCount > numberOfPeople)
+            savedCount = numberOfPeople;
+        for(int count = 1; count <= numberOfPeople; count++){
+            //check if data was saved
+            if(sharedPref.contains(SUBKEYNAME + count)){
+                //update name field
+                String name = sharedPref.getString(SUBKEYNAME + count,"");
+                EditText nameField = (EditText)findViewById(500+count);
+                nameField.setText(name);
+
+                //update email field
+                String email = sharedPref.getString(SUBKEYEMAIL + count, "");
+                EditText emailField = (EditText)findViewById(1500+count);
+                emailField.setText(email);
+
+
+            }
+        }
+
+        //TODO remove residual data, saves of data higher than current user count could still be out there..
     }
 
     private ShapeDrawable getBorderStyle(){
