@@ -19,9 +19,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         Button myButton;
 
         //iterate over all buttons - we have 8 of them pre-created
-        for(int x = 10; x < 18; x++){
+        for(int x = 0; x < 8; x++){
             //Used to get resource id based on "button" + int ID
-            int ResID = getResources().getIdentifier("button" + (x - 10 + 1),"id",getPackageName());
+            int ResID = getResources().getIdentifier("button" + (x + 1),"id",getPackageName());
             //Retrieve button from ID found
             myButton = (Button)findViewById(ResID);
             //Set the text of the button
