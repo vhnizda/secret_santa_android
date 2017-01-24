@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         }
     }
 
-
     @Override
     public void onClick(View view) {
         //Only buttons are linked currently so it's safe to assume this is a button

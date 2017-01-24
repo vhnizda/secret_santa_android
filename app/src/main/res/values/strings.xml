@@ -16,4 +16,6 @@
     <string name="user_data_instructions_part2">people.</string>
     <string name="user_name_hint_text">person\'s name</string>
     <string name="user_email_hint_text">email address</string>
+
+    <string name="preference_file_key">com.vaclavhnizda.groupsecretsanta.PREFERENCE_FILE_KEY</string>
 </resources>

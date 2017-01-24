@@ -2,6 +2,7 @@ package com.vaclavhnizda.groupsecretsanta;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.ShapeDrawable;
@@ -14,13 +15,15 @@ import android.widget.TextView;
 
 public class EnterUserInfoActivity extends AppCompatActivity {
 
+    private int numberOfPeople = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_user_info);
 
         Intent intent = getIntent();
-        int numberOfPeople = intent.getIntExtra(MainActivity.PEOPLE_COUNT,1);
+        numberOfPeople = intent.getIntExtra(MainActivity.PEOPLE_COUNT,1);
 
         //Strings to use
         String numPeopleInstructionTxt1 = getResources().getString(R.string.user_data_instructions_part1);
@@ -69,9 +72,24 @@ public class EnterUserInfoActivity extends AppCompatActivity {
             mainLayout.addView(rowLayout);  //add complete row to the list
         }
 
-        //TODO make scrollable when too much information is generated..
+        //TODO load saved data from previous session!
 
         //TODO add a button to move to next fields (and save data to database)
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        
+        //setup local resource
+        String key = getResources().getString(R.string.preference_file_key);
+        SharedPreferences sharedPref = getApplication().getSharedPreferences(key, Context.MODE_PRIVATE);
+        //edit data
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt("total_users",numberOfPeople);
+
+
+        editor.commit();
     }
 
     private ShapeDrawable getBorderStyle(){
