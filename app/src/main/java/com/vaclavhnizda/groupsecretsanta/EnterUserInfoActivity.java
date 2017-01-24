@@ -55,6 +55,7 @@ public class EnterUserInfoActivity extends AppCompatActivity {
             personsName.setHint(nameHintText);
             personsName.setTextColor(Color.BLACK);
             personsName.setHintTextColor(Color.GRAY);
+            personsName.setId(500 + rowNumber);
 
             //Column for email address
             EditText emailAddress = new EditText(context);
@@ -62,6 +63,7 @@ public class EnterUserInfoActivity extends AppCompatActivity {
             emailAddress.setHint(emailHintText);
             emailAddress.setTextColor(Color.BLACK);
             emailAddress.setHintTextColor(Color.GRAY);
+            emailAddress.setId(1500 + rowNumber);
 
             //Add all values to the row
             rowLayout.addView(numbering);   //add value to the row
@@ -80,7 +82,7 @@ public class EnterUserInfoActivity extends AppCompatActivity {
     @Override
     public void onDestroy(){
         super.onDestroy();
-        
+
         //setup local resource
         String key = getResources().getString(R.string.preference_file_key);
         SharedPreferences sharedPref = getApplication().getSharedPreferences(key, Context.MODE_PRIVATE);
@@ -88,6 +90,12 @@ public class EnterUserInfoActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt("total_users",numberOfPeople);
 
+        for(int count = 1; count <= numberOfPeople; count++){
+            EditText name = (EditText)findViewById(500+count);
+            EditText email = (EditText)findViewById(1500+count);
+            editor.putString("userName" + count, name.getText().toString());
+            editor.putString("userEmail" + count, email.getText().toString());
+        }
 
         editor.commit();
     }
