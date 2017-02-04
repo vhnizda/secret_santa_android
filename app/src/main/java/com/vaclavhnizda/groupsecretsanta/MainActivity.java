@@ -2,10 +2,13 @@ package com.vaclavhnizda.groupsecretsanta;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.content.Intent;
+import android.widget.NumberPicker;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener{
 
@@ -17,6 +20,14 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button myButton;
+
+        NumberPicker myNumPicker = (NumberPicker)findViewById(R.id.numberPicker);
+        myNumPicker.setMinValue(3);
+        myNumPicker.setMaxValue(100);
+
+        //TODO create a theme to auto colorize this, if possible and set font
+//        TextView tv1 = (TextView)myNumPicker.getChildAt(0);
+//        tv1.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 24.f);
 
         //iterate over all buttons - we have 8 of them pre-created
         for(int x = 0; x < 8; x++){
