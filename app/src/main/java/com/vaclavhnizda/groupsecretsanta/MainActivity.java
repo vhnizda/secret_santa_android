@@ -11,17 +11,20 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener{
 
     public static String PEOPLE_COUNT = "com.vaclavhnizda.groupsecretsanta.MESSAGE";
     private int minCount = 3;
-    @BindView(R.id.button_main_activity) Button mainButton;
+    @BindView(R.id.numberPicker) NumberPicker numberPicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         Button myButton;
 
         NumberPicker myNumPicker = (NumberPicker)findViewById(R.id.numberPicker);
@@ -31,8 +34,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         //TODO create a theme to auto colorize this, if possible and set font
 //        TextView tv1 = (TextView)myNumPicker.getChildAt(0);
 //        tv1.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 24.f);
-        
-        mainButton.setOnClickListener(this);
+
+//        mainButton.setOnClickListener(this);
 
         //iterate over all buttons - we have 8 of them pre-created
         for(int x = 0; x < 8; x++){
@@ -45,20 +48,29 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
             //Set a tag for later retrieval
             myButton.setTag(minCount + x);
             //Create a listener link to the button click
-            myButton.setOnClickListener(this);
+            //myButton.setOnClickListener(this);
         }
     }
 
-    @Override
-    public void onClick(View view) {
-        //Only buttons are linked currently so it's safe to assume this is a button
-        Button buttonClicked = (Button)view;
-        //Get my custom int tag representing the number of people they want to include in secret santa
-        int personCount = (int)buttonClicked.getTag();
 
+    @OnClick(R.id.button_main_activity)
+    public void onClick(View view){
+        int numberOfPeople = numberPicker.getValue();
         //This is where the next activity is launched for the app.
         Intent intent = new Intent(this, EnterUserInfoActivity.class);
-        intent.putExtra(PEOPLE_COUNT,personCount);
+        intent.putExtra(PEOPLE_COUNT,numberOfPeople);
         startActivity(intent);
     }
+//    @Override
+//    public void onClick(View view) {
+//        //Only buttons are linked currently so it's safe to assume this is a button
+//        Button buttonClicked = (Button)view;
+//        //Get my custom int tag representing the number of people they want to include in secret santa
+//        int personCount = (int)buttonClicked.getTag();
+//
+//        //This is where the next activity is launched for the app.
+//        Intent intent = new Intent(this, EnterUserInfoActivity.class);
+//        intent.putExtra(PEOPLE_COUNT,personCount);
+//        startActivity(intent);
+//    }
 }
