@@ -23,6 +23,12 @@
             android:id="@+id/numberPicker"
             android:scrollbarSize="14dp" />
 
+        <Button
+            android:text="@string/create_list_button_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_main_activity" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

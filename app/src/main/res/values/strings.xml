@@ -18,4 +18,5 @@
     <string name="user_email_hint_text">email address</string>
 
     <string name="preference_file_key">com.vaclavhnizda.groupsecretsanta.PREFERENCE_FILE_KEY</string>
+    <string name="create_list_button_text">Create List</string>
 </resources>

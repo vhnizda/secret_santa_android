@@ -10,10 +10,13 @@ import android.content.Intent;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
+import butterknife.BindView;
+
 public class MainActivity extends AppCompatActivity implements OnClickListener{
 
     public static String PEOPLE_COUNT = "com.vaclavhnizda.groupsecretsanta.MESSAGE";
     private int minCount = 3;
+    @BindView(R.id.button_main_activity) Button mainButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         //TODO create a theme to auto colorize this, if possible and set font
 //        TextView tv1 = (TextView)myNumPicker.getChildAt(0);
 //        tv1.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 24.f);
+        
+        mainButton.setOnClickListener(this);
 
         //iterate over all buttons - we have 8 of them pre-created
         for(int x = 0; x < 8; x++){
