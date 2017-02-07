@@ -14,9 +14,24 @@
     <string name="user_data_instructions">Please fill out each persons name.</string>
     <string name="user_data_instructions_part1">Please fill out the information for all</string>
     <string name="user_data_instructions_part2">people.</string>
-    <string name="user_name_hint_text">person\'s name</string>
-    <string name="user_email_hint_text">email address</string>
+    <string name="user_name_hint_text">&#032;&lt;person\&apos;s name&gt;&#032;</string>
+    <string name="user_email_hint_text">&#032;&lt;email address&gt;&#032;</string>
 
     <string name="preference_file_key">com.vaclavhnizda.groupsecretsanta.PREFERENCE_FILE_KEY</string>
     <string name="create_list_button_text">Create List</string>
 </resources>
+
+<!--
+
+Codes for special characters:
+
+"   &quot;
+'   &apos;
+<   &lt;
+>   &gt;
+&   &amp;
+
+Use &#160; for Non-breakable whitespace
+Use &#032; for regular space.
+
+-->

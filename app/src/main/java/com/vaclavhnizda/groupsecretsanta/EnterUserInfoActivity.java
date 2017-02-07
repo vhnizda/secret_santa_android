@@ -13,6 +13,10 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import butterknife.BindString;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class EnterUserInfoActivity extends AppCompatActivity {
 
     private int numberOfPeople = 0;
@@ -20,19 +24,20 @@ public class EnterUserInfoActivity extends AppCompatActivity {
     private final String SUBKEYNAME = "userName";
     private final String SUBKEYEMAIL = "userEmail";
 
+    //Strings to use
+    @BindString(R.string.user_data_instructions_part1) String numPeopleInstructionTxt1;
+    @BindString(R.string.user_data_instructions_part2) String numPeopleInstructionTxt2;
+    @BindString(R.string.user_name_hint_text) String nameHintText;
+    @BindString(R.string.user_email_hint_text) String emailHintText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_user_info);
+        ButterKnife.bind(this);
 
         Intent intent = getIntent();
         numberOfPeople = intent.getIntExtra(MainActivity.PEOPLE_COUNT,1);
-
-        //Strings to use
-        String numPeopleInstructionTxt1 = getResources().getString(R.string.user_data_instructions_part1);
-        String numPeopleInstructionTxt2 = getResources().getString(R.string.user_data_instructions_part2);
-        String emailHintText = " <" + getResources().getString(R.string.user_email_hint_text) + "> ";
-        String nameHintText =  " <" + getResources().getString(R.string.user_name_hint_text)  + "> ";
 
         TextView textView = (TextView)findViewById(R.id.user_instructions);
         textView.setText(numPeopleInstructionTxt1 + " " + numberOfPeople + " " + numPeopleInstructionTxt2);
