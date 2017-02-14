@@ -44,6 +44,21 @@ public class DBConnection {
         return SecretSantaContact.count(SecretSantaContact.class);
     }
 
+    
+    public static boolean updateContact(int location,String[] info){
+        //check location exists
+        //check info given has 3 strings
+        if(countContacts()< location || info.length < 3)
+            return false;
+        //update entry
+        else{
+            SecretSantaContact contact = getContact(location);
+            contact.name = info[0];
+            contact.lastName = info[1];
+            contact.email = info[2];
+            return true;
+        }
+    }
 
     //Testing purposes
     public static void main(String[] args){
