@@ -13,6 +13,12 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.vaclavhnizda.groupsecretsanta.Data.DBConnection;
+import com.vaclavhnizda.groupsecretsanta.Data.SecretSantaContact;
+
+import java.util.Iterator;
+import java.util.List;
+
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,6 +44,9 @@ public class EnterUserInfoActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         numberOfPeople = intent.getIntExtra(MainActivity.PEOPLE_COUNT,1);
+
+        String[] test = {"start"};
+        DBConnection.main(test);
 
         TextView textView = (TextView)findViewById(R.id.user_instructions);
         textView.setText(numPeopleInstructionTxt1 + " " + numberOfPeople + " " + numPeopleInstructionTxt2);

@@ -19,8 +19,8 @@
         </activity>
         <activity android:name=".EnterUserInfoActivity"></activity>
 
-        <meta-data android:name="DATABASE" android:value="secret_santa.db" />
-        <meta-data android:name="VERSION" android:value="1" />
+        <meta-data android:name="DATABASE" android:value="secret_santa3.db" />
+        <meta-data android:name="VERSION" android:value="1.2" />
         <meta-data android:name="QUERY_LOG" android:value="true" />
         <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.vaclavhnizda" />
 
