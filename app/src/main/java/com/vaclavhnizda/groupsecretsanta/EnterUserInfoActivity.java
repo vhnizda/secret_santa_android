@@ -35,6 +35,7 @@ public class EnterUserInfoActivity extends AppCompatActivity {
     @BindString(R.string.user_data_instructions_part2) String numPeopleInstructionTxt2;
     @BindString(R.string.user_name_hint_text) String nameHintText;
     @BindString(R.string.user_email_hint_text) String emailHintText;
+    @BindView(R.id.user_list_layout) LinearLayout userListLayout; //list for adding users
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +45,6 @@ public class EnterUserInfoActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         numberOfPeople = intent.getIntExtra(MainActivity.PEOPLE_COUNT,1);
-
-        String[] test = {"start"};
-        DBConnection.main(test);
 
         TextView textView = (TextView)findViewById(R.id.user_instructions);
         textView.setText(numPeopleInstructionTxt1 + " " + numberOfPeople + " " + numPeopleInstructionTxt2);

@@ -29,7 +29,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -40,5 +41,13 @@
 
             </LinearLayout>
         </ScrollView>
+
+        <Button
+            android:text="@string/add_new_person"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/add_new_person_button"/>
+
+
     </LinearLayout>
 </RelativeLayout>
