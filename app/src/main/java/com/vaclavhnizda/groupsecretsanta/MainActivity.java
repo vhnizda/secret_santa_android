@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
     public void onClick(View view){
         int numberOfPeople = numberPicker.getValue();
         //This is where the next activity is launched for the app.
-        Intent intent = new Intent(this, EnterUserInfoActivity.class);
-        intent.putExtra(PEOPLE_COUNT,numberOfPeople);
-        startActivity(intent);
+        Intent intent = new Intent(this, EnterUserInfoActivity.class);//Create intent of new activity
+        intent.putExtra(PEOPLE_COUNT,numberOfPeople);//Passing extra values
+        startActivity(intent);//start activity
     }
 }
